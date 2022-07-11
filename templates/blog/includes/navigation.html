@@ -29,7 +29,7 @@
                         </a>
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                             {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item" href="#">{{ request.user }}</a></li>
+                                <li><a class="dropdown-item" href="#">{{ request.user|title }}</a></li>
                                 <li><a class="dropdown-item" href="{% url 'admin:index' %}">Yönetici Paneli</a>
                                 </li>
                                 <li>
@@ -43,7 +43,7 @@
                                 </li>
                                 <li><a class="dropdown-item" href="#">Üye Ol</a></li>
                             {% else %}
-                                <li><a class="dropdown-item" href="#">{{ request.user }}</a></li>
+                                <li><a class="dropdown-item" href="#">{{ request.user|title }}</a></li>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -107,7 +107,7 @@
                                                         </div>
                                                         Company
                                                     </div>
-                                                    <a href="/about-us.html" class="dropdown-item border-radius-md">
+                                                    <a href="{% url 'about' %}" class="dropdown-item border-radius-md">
                                                         <span class="ps-3">Hakkımızda</span>
                                                     </a>
                                                     <a href="/pricing.html" class="dropdown-item border-radius-md">
@@ -196,7 +196,7 @@
                                             </div>
                                             Company
                                         </div>
-                                        <a href="/about-us.html" class="dropdown-item border-radius-md">
+                                        <a href="{% url 'about' %}" class="dropdown-item border-radius-md">
                                             Hakkımızda
                                         </a>
                                         <a href="/pricing.html" class="dropdown-item border-radius-md">
@@ -550,7 +550,7 @@
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
 
                                     {% if request.user.is_superuser %}
-                                        <li><a class="dropdown-item" href="#">{{ request.user }}</a></li>
+                                        <li><a class="dropdown-item" href="#">{{ request.user|title }}</a></li>
                                         <li><a class="dropdown-item" href="{% url 'admin:index' %}">Yönetici Paneli</a>
                                         </li>
                                         <li>
@@ -564,7 +564,7 @@
                                         </li>
                                         <li><a class="dropdown-item" href="#">Üye Ol</a></li>
                                     {% else %}
-                                        <li><a class="dropdown-item" href="#">{{ request.user }}</a></li>
+                                        <li><a class="dropdown-item" href="#">{{ request.user|title }}</a></li>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
