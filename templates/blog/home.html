@@ -76,41 +76,59 @@
     <!-- -------- START Content Presentation Docs ------- -->
 
     <main class="container">
-        <div class="row g-5">
+        <div class="row g-4">
             <div class="col-md-8">
-
                 {% for post in posts %}
-                    <section class="py-4">
-                        <div>
-                            <div class="row justify-space-between py-2">
-                                <div class="col-12 mx-auto">
-                                    <div class="card shadow-lg">
-                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                                            <a href="{% url 'detay' post.category.name.lower post.slug %}"
-                                               class="d-block">
-                                                <img src="{{ post.cover.url }}"
-                                                     class="img-fluid border-radius-lg">
-                                            </a>
-                                        </div>
-
-                                        <div class="card-body pt-3">
-                                            <a href="{% url 'kategori' post.category.name.lower %}">
-                                                <span class="text-gradient text-warning text-uppercase text-xs font-weight-bold my-2">{{ post.category.name }}</span>
-                                            </a>
-
-                                            <a href="javascript:;" class="text-darker card-title h5 d-block">
-                                                {{ post.title|title }}
-                                            </a>
-                                            <p class="card-description mb-4">
-                                                {{ post.text|safe|truncatechars_html:150 }}
-                                            </p>
-                                            <div class="author align-items-center">
-                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/marie.jpg"
-                                                     alt="..." class="avatar shadow">
-                                                <div class="name ps-3">
-                                                    <span>{{ post.author.username|title }}</span>
-                                                    <div class="stats">
-                                                        <small>{{ post.publish|timesince }} önce paylaştı</small>
+                    <a href="{% url 'detay' post.category.name.lower post.slug %}">
+                        <section class="py-4">
+                            <div class="container">
+                                <div class="row justify-space-between py-2">
+                                    <div class="col-12 mx-auto">
+                                        <div class="card">
+                                            <img class="card-img-top"
+                                                 src="{{ post.cover.url }}">
+                                            <div class="position-relative overflow-hidden"
+                                                 style="height:50px;margin-top:-50px;">
+                                                <div class="position-absolute w-100 top-0 z-index-1">
+                                                    <svg class="waves waves-sm" xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         viewBox="0 24 150 40"
+                                                         preserveAspectRatio="none" shape-rendering="auto">
+                                                        <defs>
+                                                            <path id="card-wave"
+                                                                  d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                                                        </defs>
+                                                        <g class="moving-waves">
+                                                            <use xlink:href="#card-wave" x="48" y="-1"
+                                                                 fill="rgba(255,255,255,0.30"></use>
+                                                            <use xlink:href="#card-wave" x="48" y="3"
+                                                                 fill="rgba(255,255,255,0.35)"></use>
+                                                            <use xlink:href="#card-wave" x="48" y="5"
+                                                                 fill="rgba(255,255,255,0.25)"></use>
+                                                            <use xlink:href="#card-wave" x="48" y="8"
+                                                                 fill="rgba(255,255,255,0.20)"></use>
+                                                            <use xlink:href="#card-wave" x="48" y="13"
+                                                                 fill="rgba(255,255,255,0.15)"></use>
+                                                            <use xlink:href="#card-wave" x="48" y="16"
+                                                                 fill="rgba(255,255,255,0.99)"></use>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="text-gradient text-info text-uppercase text-xs font-weight-bold my-2">{{ post.category.name|title }}</h5>
+                                                <h4>{{ post.title }}</h4>
+                                                <p>
+                                                    {{ post.text|safe|truncatechars_html:150 }}
+                                                </p>
+                                                <div class="author align-items-center">
+                                                    <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/marie.jpg"
+                                                         alt="..." class="avatar shadow">
+                                                    <div class="name ps-3">
+                                                        <span>{{ post.author|title }}</span>
+                                                        <div class="stats">
+                                                            <small>{{ post.publish|timesince }} önce paylaştı.</small>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,8 +136,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </a>
                 {% empty %}
                     <section class="py-4">
                         <div>

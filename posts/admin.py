@@ -14,3 +14,4 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostsAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'status', 'created']
     list_filter = ['title', 'author', 'status', 'created']
+    search_fields = ['title']

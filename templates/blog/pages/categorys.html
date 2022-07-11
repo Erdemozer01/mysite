@@ -1,7 +1,7 @@
 {% extends 'blog/index.html' %}
 {% load static %}
 
-{% block title %} Kategori {% endblock %}
+{% block title %} Kategoriler {% endblock %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock %}
@@ -30,7 +30,7 @@
                     <label>Arama</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input class="form-control" placeholder="Gönderi Arayın" type="text">
+                        <input class="form-control" placeholder="Kategori Arayın" type="text">
                     </div>
                 </div>
                 <div class="col-lg-4 d-flex align-items-center mt-lg-auto mt-2">
@@ -44,56 +44,66 @@
     <div class="container mt-7">
         <div class="row">
             <div class="col-lg-12">
-                <div class="row">
-                    {% if kategori %}
-                        {% for foo in kategori %}
-                            {% if forloop.last %}
-                                <div class="col-lg-6 justify-content-center d-flex flex-column">
-                                    <div class="card">
-                                        <div class="d-block blur-shadow-image">
-                                            <img src="{{ foo.category.image.url }}"
-                                                 alt="img-blur-shadow-blog-2" class="img-fluid border-radius-lg">
-                                        </div>
+                {% if kategori %}
+                    {% for foo in kategori %}
+                        <div class="row mt-5">
+                            <div class="col-lg-6 justify-content-center d-flex flex-column">
+                                <div class="card">
+                                    <div class="d-block blur-shadow-image">
+                                        <img src="{{ foo.image.url }}"
+                                             alt="img-blur-shadow-blog-2" class="img-fluid border-radius-lg">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
-                                    <h3 class="card-title">
-                                        <a href="javascript:;" class="text-dark">
-                                            {{ foo.category.name|title }} Kategorisi
-                                        </a>
-                                    </h3>
-                                    <p class="card-description">
-                                        Açıklama : {{ foo.category.explain }}
-                                    </p>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="row">
-                    <div class="row mt-5">
-                        {% for object in object_list %}
-                            <div class="col-lg-4 mb-lg-0 mb-4">
-                                <!-- Start Card Blog Fullbackground - text centered -->
-                                <a href="{% url 'detay' object.category object.slug %}">
-                                    <div class="card card-background move-on-hover">
-                                        <div class="full-background"
-                                             style="background-image: url({{ object.cover.url }})"></div>
-                                        <div class="card-body pt-12">
-                                            <h4 class="text-white">{{ object.title }}</h4>
-                                            <p>{{ object.text|safe|truncatechars_html:50 }}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- End Card Blog Fullbackground - text centered -->
                             </div>
+                            <div class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
+                                <h3 class="card-title">
+                                    <a href="{% url 'kategori' foo.slug %}" class="text-dark">{{ foo.name|title }}</a>
+                                </h3>
+                                <p class="card-description">
+                                    {{ foo.explain }}
+                                </p>
+                            </div>
+                        </div>
                         {% empty %}
-                            <p class="text-center">Kategoriye Ait Gönderi Bulunamadı.</p>
-                        {% endfor %}
+                        <p>{{ foo.name }} Kategorisine ait gönderi bulunamadı</p>
+                    {% endfor %}
+                {% else %}
+                    <div class="row mt-5">
+                        <div class="col-lg-6 justify-content-center d-flex flex-column">
+                            <div class="card">
+                                <div class="d-block blur-shadow-image">
+                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/jump.jpg"
+                                         alt="img-blur-shadow-blog-2" class="img-fluid border-radius-lg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 justify-content-center d-flex flex-column pl-lg-5 pt-lg-0 pt-3">
+                            <h6 class="category text-warning mt-3">Productivity</h6>
+                            <h3 class="card-title">
+                                <a href="javascript:;" class="text-dark">Interesting factoids I bet you never knew
+                                    about
+                                    Creative Tim</a>
+                            </h3>
+                            <p class="card-description">
+                                Warner Music Group announced today it’s acquiring the selected assets of the music
+                                platform
+                                Songkick, including its app for finding concerts and the company’s trademark.
+                                Songkick has
+                                been involved in a lawsuit against the major… <a href="javascript:;"
+                                                                                 class="text-darker icon-move-right text-sm">Read
+                                More
+                                <i class="fas fa-arrow-right text-xs ms-1"></i>
+                            </a>
+                            </p>
+                            <p class="author">
+                                by <a href="javascript:;" class="ms-1"><span class="font-weight-bold text-warning"> Sarah Perez</span></a>,
+                                2 days ago
+                            </p>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
                 {% if paginator %}
-                    <ul class="pagination pagination-info my-5 ">
+                    <ul class="pagination pagination-info my-5 float-start">
                         {% if page_obj.has_previous %}
                             <li class="page-item ms-auto">
                                 <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
@@ -113,9 +123,9 @@
                         {% endif %}
                         {% for i in page_obj.paginator.page_range %}
 
-                            <li class="page-item active">
-                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                            </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                </li>
 
                         {% endfor %}
                         {% if page_obj.has_next %}

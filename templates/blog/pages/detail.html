@@ -9,8 +9,8 @@
 {% block body_class %} presentation-page {% endblock %}
 
 {% block content %}
-    
-        <section class="pt-3 pt-md-5 pb-md-5 pt-lg-9 mt-8 mt-md-7 mt-lg-0">
+
+    <section class="pt-3 pt-md-5 pb-md-5 pt-lg-9 mt-8 mt-md-7 mt-lg-0">
         <div class="container">
             <div class="col-12 mx-auto pb-5">
                 <div class="card shadow-lg">
@@ -20,58 +20,53 @@
                             <p class="text-white opacity-8 mb-0">{{ post.created|date }}</p>
                         </div>
                     </div>
-                    <section class="py-5">
+                    <section class="py-4">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 mx-auto">
-                                    <div class="card card-blog card-plain">
-                                        <div class="position-relative">
-                                            <a class="d-block blur-shadow-image">
-                                                {% if post.cover.url %}
-                                                    <img src="{{ post.cover.url }}"
-                                                         alt="img-blur-shadow"
-                                                         class="img-fluid shadow border-radius-lg">
-                                                {% endif %}
-
-                                            </a>
+                            <div class="row justify-space-between py-2">
+                                <div class="col-12 mx-auto">
+                                    <div class="card">
+                                        <img class="card-img-top"
+                                             src="{{ post.cover.url }}">
+                                        <div class="position-relative overflow-hidden"
+                                             style="height:50px;margin-top:-50px;">
+                                            <div class="position-absolute w-100 top-0 z-index-1">
+                                                <svg class="waves waves-sm" xmlns="http://www.w3.org/2000/svg"
+                                                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40"
+                                                     preserveAspectRatio="none" shape-rendering="auto">
+                                                    <defs>
+                                                        <path id="card-wave"
+                                                              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                                                    </defs>
+                                                    <g class="moving-waves">
+                                                        <use xlink:href="#card-wave" x="48" y="-1"
+                                                             fill="rgba(255,255,255,0.30"></use>
+                                                        <use xlink:href="#card-wave" x="48" y="3"
+                                                             fill="rgba(255,255,255,0.35)"></use>
+                                                        <use xlink:href="#card-wave" x="48" y="5"
+                                                             fill="rgba(255,255,255,0.25)"></use>
+                                                        <use xlink:href="#card-wave" x="48" y="8"
+                                                             fill="rgba(255,255,255,0.20)"></use>
+                                                        <use xlink:href="#card-wave" x="48" y="13"
+                                                             fill="rgba(255,255,255,0.15)"></use>
+                                                        <use xlink:href="#card-wave" x="48" y="16"
+                                                             fill="rgba(255,255,255,0.99)"></use>
+                                                    </g>
+                                                </svg>
+                                            </div>
                                         </div>
-                                        <div class="card-body pt-3">
-                                            <span class="text-gradient text-info text-uppercase text-xs font-weight-bold my-2">{{ post.category.name }}</span>
-                                            <p
-                                                    class="text-darker card-title h5 d-block">
-                                                {{ post.title }}
-                                            </p>
-                                            <p class="card-description mb-4">
+                                        <div class="card-body">
+                                            <h5 class="text-gradient text-info text-uppercase text-xs font-weight-bold my-2">{{ post.category.name|title }}</h5>
+                                            <h4>{{ post.title }}</h4>
+                                            <p>
                                                 {{ post.text|safe }}
                                             </p>
                                             <div class="author align-items-center">
-                                                {% if post.author.is_superuser or post.author.is_staff %}
-                                                    <img src="{% static "images/Users/default/curved-10.jpg" %}"
-                                                         alt="{{ post.author.profile.first_name }}"
-                                                         class="avatar shadow">
-
-                                                {% else %}
-                                                    {% if post.author.profile.avatar.url is not null %}
-                                                        <img src="{{ post.author.profile.avatar.url }}"
-                                                             alt="{{ post.author.first_name }}"
-                                                             class="avatar shadow">
-
-                                                    {% else %}
-                                                        <img src="{% static "images/Users/default/curved-10.jpg" %}"
-                                                             alt="{{ post.author.profile.first_name }}"
-                                                             class="avatar shadow">
-                                                    {% endif %}
-
-                                                {% endif %}
-
+                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/marie.jpg"
+                                                     alt="..." class="avatar shadow">
                                                 <div class="name ps-3">
-                                                    {% if post.author.first_name and post.author.last_name %}
-                                                        <span>{{ post.author.first_name|title }} {{ post.author.last_name|title }}</span>
-                                                    {% else %}
-                                                        <span>{{ post.author.username|title }} {{ post.author.last_name|title }}</span>
-                                                    {% endif %}
+                                                    <span>{{ post.author|title }}</span>
                                                     <div class="stats">
-                                                        <small>{{ post.publish|timesince }} önce paylaştı</small>
+                                                        <small>{{ post.publish|timesince }} önce paylaştı.</small>
                                                     </div>
                                                 </div>
                                             </div>
