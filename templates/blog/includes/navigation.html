@@ -263,25 +263,22 @@
                                             Kategoriler
                                         </div>
                                         {% for foo in category %}
-                                            <a href="{% url 'kategori' foo.slug %}"
-                                               class="dropdown-item border-radius-md">
-                                                <span class="ps-3">{{ foo.name }}</span>
-                                            </a>
+                                            {% if forloop.counter < 5 %}
+                                                <a href="{% url 'kategori' foo.slug %}"
+                                                   class="dropdown-item border-radius-md">
+                                                    <span class="ps-3">{{ foo.name }}</span>
+                                                </a>
+                                            {% endif %}
                                         {% empty %}
-                                            <a href="/page-blog-article.html"
+                                            <a href="#"
                                                class="dropdown-item border-radius-md">
-                                                <span class="ps-3">Single Article</span>
+                                                <span class="ps-3">Kategori Bulunamadı</span>
                                             </a>
-                                            <a href="/page-blog-posts.html"
-                                               class="dropdown-item border-radius-md">
-                                                <span class="ps-3">Blog Posts</span>
-                                            </a>
-                                            <a href="/page-blog-categories.html"
-                                               class="dropdown-item border-radius-md">
-                                                <span class="ps-3">Categories</span>
-                                            </a>
-
                                         {% endfor %}
+                                        <a href="{% url 'kategoriler' %}"
+                                           class="dropdown-item border-radius-md">
+                                            <span class="ps-3">Tüm Kategoriler</span>
+                                        </a>
                                     </div>
                                 </div>
                             </li>
