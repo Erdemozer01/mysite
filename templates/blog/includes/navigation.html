@@ -163,12 +163,8 @@
                                                            class="dropdown-item border-radius-md">
                                                             <span class="ps-3">Categories</span>
                                                         </a>
-
                                                     {% endfor %}
-
-
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -234,18 +230,26 @@
                                             </div>
                                             Kategoriler
                                         </div>
-                                        <a href="/page-blog-article.html" class="dropdown-item border-radius-md">
-                                            Single Article
-                                        </a>
-                                        <a href="/page-blog-posts.html" class="dropdown-item border-radius-md">
-                                            Blog Posts
-                                        </a>
-                                        <a href="/page-blog-categories.html" class="dropdown-item border-radius-md">
-                                            Categories
-                                        </a>
-                                        <a href="/page-blog-author.html" class="dropdown-item border-radius-md">
-                                            Author
-                                        </a>
+                                        {% for foo in category %}
+                                            <a href="{% url 'kategori' foo.slug %}"
+                                               class="dropdown-item border-radius-md">
+                                                <span class="ps-3">{{ foo.name }}</span>
+                                            </a>
+                                        {% empty %}
+                                            <a href="/page-blog-article.html"
+                                               class="dropdown-item border-radius-md">
+                                                <span class="ps-3">Single Article</span>
+                                            </a>
+                                            <a href="/page-blog-posts.html"
+                                               class="dropdown-item border-radius-md">
+                                                <span class="ps-3">Blog Posts</span>
+                                            </a>
+                                            <a href="/page-blog-categories.html"
+                                               class="dropdown-item border-radius-md">
+                                                <span class="ps-3">Categories</span>
+                                            </a>
+
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </li>
