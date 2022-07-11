@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.models import About, Cover, Social, Contact, Terms
+from blog.models import About, Cover, Social, Contact, Terms, Bottom
 from posts.models import Posts, Category
 from django.views import generic
 from django.urls import reverse_lazy
@@ -13,7 +13,8 @@ def home(request):
     covers = Cover.objects.all()
     posts = Posts.objects.all().order_by('-id')
     social = Social.objects.all()
-    return render(request, 'blog/home.html', {'covers': covers, 'posts': posts, 'social': social})
+    bottom = Bottom.objects.all()
+    return render(request, 'blog/home.html', {'covers': covers, 'posts': posts, 'social': social, 'bottom': bottom})
 
 
 def about(request):

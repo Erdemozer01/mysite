@@ -247,21 +247,26 @@
 
 
     <!-- START Section Content W/ 2 images aside of icon title description -->
-    <section class="py-sm-7" id="download-soft-ui">
+    <section class="py-sm-7">
         <div class="bg-gradient-dark position-relative m-3 border-radius-xl overflow-hidden">
             <img src="{% static 'blog/images/shapes/pattern-lines.svg' %}" alt="pattern-lines"
                  class="position-absolute start-0 top-md-0 w-100 opacity-6">
             <div class="container py-7 postion-relative z-index-2 position-relative">
                 <div class="row">
                     <div class="col-md-7 mx-auto text-center">
-                        <h3 class="text-white mb-0">Do you love this awesome</h3>
-                        <h3 class="text-primary text-gradient mb-4">Design System for Bootstrap 5?</h3>
-                        <p class="text-white mb-5">
-                            Cause if you do, it can be yours for FREE.
-                        </p>
-                        <a target="_blank"
-                           href="https://appseed.us/product/soft-ui-design/django/"
-                           class="btn btn-primary btn-lg mb-3 mb-sm-0">Download</a>
+                        {% for foo in bottom %}
+                            {% if forloop.last %}
+                                <h3 class="text-white mb-0">{{ foo.title }}</h3>
+                                <p class="text-white mb-5">
+                                    {{ foo.text|safe }}
+                                </p>
+                            {% endif %}
+                        {% empty %}
+                            <h3 class="text-white mb-0">Alt Kapak</h3>
+                            <p class="text-white mb-5">
+                                içerik
+                            </p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -270,30 +275,6 @@
     <!-- END Section Content -->
     <!-- -------   START PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
 
-    <div class="pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 ms-auto">
-                    <h4 class="mb-1">Thank you for your support!</h4>
-                    <p class="lead mb-0">We deliver the best web products</p>
-                </div>
-                <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-right mt-5">
-                    <a href="https://twitter.com/intent/tweet?text=Check%20Soft%20UI%20Design%20System%20made%20by%20%40CreativeTim%20%23webdesign%20%23designsystem%20%23bootstrap5&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-design-system"
-                       class="btn btn-info mb-0 me-2" target="_blank">
-                        <i class="fab fa-twitter me-1"></i> Tweet
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-design-system"
-                       class="btn btn-primary mb-0 me-2" target="_blank">
-                        <i class="fab fa-facebook-square me-1"></i> Share
-                    </a>
-                    <a href="https://www.pinterest.com/pin/create/button/?url=https://www.creative-tim.com/product/soft-ui-design-system"
-                       class="btn btn-dark mb-0 me-2" target="_blank">
-                        <i class="fab fa-pinterest me-1"></i> Pin it
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
 {% endblock content %}
 
