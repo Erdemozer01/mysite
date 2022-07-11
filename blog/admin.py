@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Contact, Titles, Cover, Inbox
+from blog.models import Contact, Titles, Cover, Inbox, About
 
 
 # Register your models here.
@@ -8,6 +8,10 @@ from blog.models import Contact, Titles, Cover, Inbox
 class TitleAdmin(admin.ModelAdmin):
     list_display = ['name', 'type', 'created']
 
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ['name', 'created']
 
 
 @admin.register(Contact)
@@ -24,7 +28,3 @@ class CoverAdmin(admin.ModelAdmin):
 class InboxAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'topic', 'phone', 'created']
     list_filter = ['name']
-
-
-
-
