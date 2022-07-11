@@ -28,5 +28,5 @@ class Cover(models.Model):
     class Meta:
         ordering = ['publish']
         db_table = 'cover'
-        verbose_name = 'Kapak'
-        verbose_name_plural = 'Kapak'
+        verbose_name = 'Üst Kapak'
+        verbose_name_plural = 'Üst Kapak'

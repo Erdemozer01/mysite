@@ -18,6 +18,7 @@ from blog import views
 from django.views import generic
 urlpatterns = [
     path('', views.home, name='home'),
+    path('terms/', views.terms, name='terms'),
     path('hakkımızda/', views.about, name='about'),
     path('iletisim/', views.ContactView.as_view(), name='contact'),
 ]
