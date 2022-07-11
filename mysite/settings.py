@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'posts.apps.PostsConfig',
+    'django_cleanup',
     'bootstrap5',
     'ckeditor',
     'ckeditor_uploader',
