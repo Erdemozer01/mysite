@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils import timezone
-from apps.posts.models.categorys import Category
+from posts.models.categorys import Category
 
 
 class PublishedManager(models.Manager):

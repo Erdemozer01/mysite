@@ -23,12 +23,12 @@
                     {% endif %}
                 {% else %}
                     <div class="page-header min-vh-75 relative"
-                         style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved.jpg')">
+                         style="background-image: url({% static 'blog/images/curved.jpg' %})">
                 {% endif %}
             {% endif %}
         {% empty %}
             <div class="page-header min-vh-75 relative"
-                 style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved.jpg')">
+                 style="background-image: url({% static 'blog/images/curved.jpg' %})">
         {% endfor %}
         <div class="container">
             <div class="row">
