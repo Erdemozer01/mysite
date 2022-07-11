@@ -1,0 +1,304 @@
+{% extends "blog/index.html" %}
+{% load static %}
+
+{% block title %} Anasayfa {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock %}
+
+{% block body_class %} presentation-page {% endblock %}
+
+{% block content %}
+
+    <header class="header-2">
+        {% for cover in covers %}
+            {% if forloop.last %}
+                {% if cover.image %}
+                    <div class="page-header min-vh-75 relative"
+                         style="background-image: url({{ cover.image.url }})">
+                    {% if cover.theme %}
+                        <span class="mask bg-gradient-{{ cover.theme }}"></span>
+                    {% else %}
+                        <span class="mask bg-gradient-dark"></span>
+                    {% endif %}
+                {% else %}
+                    <div class="page-header min-vh-75 relative"
+                         style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved.jpg')">
+                {% endif %}
+            {% endif %}
+        {% empty %}
+            <div class="page-header min-vh-75 relative"
+                 style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/curved.jpg')">
+        {% endfor %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mx-auto">
+                    <h1 class="text-white pt-3 mt-n0">
+                        {% for foo in covers %}
+                            {% if forloop.last %}
+                                <a class="text-white"
+                                   href="#">{{ foo.title }}</a>
+                                <p class="lead text-white mt-3">
+                                    {{ foo.text }}
+                                </p>
+                            {% endif %}
+                        {% empty %}
+                            <a class="text-white" target="_blank"
+                               href="#">Kapak</a>
+                            <p class="lead text-white mt-3">
+                                Açıklama
+                            </p>
+                        {% endfor %}
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="position-absolute w-100 z-index-1 bottom-0">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                          d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                </defs>
+                <g class="moving-waves">
+                    <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40"/>
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95"/>
+                </g>
+            </svg>
+        </div>
+        </div>
+    </header>
+
+    <!-- -------- START Content Presentation Docs ------- -->
+
+    <main class="container">
+        <div class="row g-5">
+            <div class="col-md-8">
+
+                {% for post in posts %}
+                    <section class="py-4">
+                        <div>
+                            <div class="row justify-space-between py-2">
+                                <div class="col-12 mx-auto">
+                                    <div class="card shadow-lg">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="{% url 'detay' post.category.name.lower post.slug %}"
+                                               class="d-block">
+                                                <img src="{{ post.cover.url }}"
+                                                     class="img-fluid border-radius-lg">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body pt-3">
+                                            <a href="{% url 'kategori' post.category.name.lower %}">
+                                                <span class="text-gradient text-warning text-uppercase text-xs font-weight-bold my-2">{{ post.category.name }}</span>
+                                            </a>
+
+                                            <a href="javascript:;" class="text-darker card-title h5 d-block">
+                                                {{ post.title|title }}
+                                            </a>
+                                            <p class="card-description mb-4">
+                                                {{ post.text|safe|truncatechars_html:150 }}
+                                            </p>
+                                            <div class="author align-items-center">
+                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/marie.jpg"
+                                                     alt="..." class="avatar shadow">
+                                                <div class="name ps-3">
+                                                    <span>{{ post.author.username|title }}</span>
+                                                    <div class="stats">
+                                                        <small>{{ post.publish|timesince }} dk önce paylaştı</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                {% empty %}
+                    <section class="py-4">
+                        <div>
+                            <div class="row justify-space-between py-2">
+                                <div class="col-12 mx-auto">
+                                    <div class="card shadow-lg">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="javascript:;" class="d-block">
+                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/annie-spratt.jpg"
+                                                     class="img-fluid border-radius-lg">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body pt-3">
+                                            <span class="text-gradient text-warning text-uppercase text-xs font-weight-bold my-2">Hub</span>
+                                            <a href="javascript:;" class="text-darker card-title h5 d-block">
+                                                Shared Coworking
+                                            </a>
+                                            <p class="card-description mb-4">
+                                                Use border utilities to quickly style the border and border-radius
+                                                of an
+                                                element. Great for images, buttons.
+                                            </p>
+                                            <div class="author align-items-center">
+                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/marie.jpg"
+                                                     alt="..." class="avatar shadow">
+                                                <div class="name ps-3">
+                                                    <span>Mathew Glock</span>
+                                                    <div class="stats">
+                                                        <small>Posted on 28 February</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="py-4">
+                        <div>
+                            <div class="row justify-space-between py-2">
+                                <div class="col-12 mx-auto">
+                                    <div class="card shadow-lg">
+                                        <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                                            <a href="javascript:;" class="d-block">
+                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/annie-spratt.jpg"
+                                                     class="img-fluid border-radius-lg">
+                                            </a>
+                                        </div>
+
+                                        <div class="card-body pt-3">
+                                            <span class="text-gradient text-warning text-uppercase text-xs font-weight-bold my-2">Hub</span>
+                                            <a href="javascript:;" class="text-darker card-title h5 d-block">
+                                                Shared Coworking
+                                            </a>
+                                            <p class="card-description mb-4">
+                                                Use border utilities to quickly style the border and border-radius
+                                                of an
+                                                element. Great for images, buttons.
+                                            </p>
+                                            <div class="author align-items-center">
+                                                <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-design-pro/img/marie.jpg"
+                                                     alt="..." class="avatar shadow">
+                                                <div class="name ps-3">
+                                                    <span>Mathew Glock</span>
+                                                    <div class="stats">
+                                                        <small>Posted on 28 February</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-4">
+                <div class="position-sticky" style="top: 5rem;">
+
+                    <div class="p-4">
+                        <h4 class="fst-italic">Son Gönderiler</h4>
+                        <ol class="list-unstyled mb-0">
+                            {% for post in posts %}
+                                <li>
+                                    <a href="{% url 'detay' post.category.name.lower post.slug %}">{{ post.title|title }}</a>
+                                </li>
+                            {% empty %}
+
+                                <li><a href="#">March 2021</a></li>
+                                <li><a href="#">February 2021</a></li>
+                                <li><a href="#">January 2021</a></li>
+                                <li><a href="#">December 2020</a></li>
+                                <li><a href="#">November 2020</a></li>
+                                <li><a href="#">October 2020</a></li>
+                                <li><a href="#">September 2020</a></li>
+                                <li><a href="#">August 2020</a></li>
+                                <li><a href="#">July 2020</a></li>
+                                <li><a href="#">June 2020</a></li>
+                                <li><a href="#">May 2020</a></li>
+                                <li><a href="#">April 2020</a></li>
+
+                            {% endfor %}
+
+
+                        </ol>
+                    </div>
+
+                    <div class="p-4">
+                        <h4 class="fst-italic">Sosyal Medya</h4>
+                        <ol class="list-unstyled">
+                            {% for foo in social %}
+                                <li><a href="{{ foo.url }}" target="_blank">{{ foo.name|title }}</a></li>
+                            {% empty %}
+                                <li><a href="#">GitHub</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Facebook</a></li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- -------- END Content Presentation Docs ------- -->
+
+
+    <!-- START Section Content W/ 2 images aside of icon title description -->
+    <section class="py-sm-7" id="download-soft-ui">
+        <div class="bg-gradient-dark position-relative m-3 border-radius-xl overflow-hidden">
+            <img src="{{ ASSETS_ROOT }}/img/shapes/waves-white.svg" alt="pattern-lines"
+                 class="position-absolute start-0 top-md-0 w-100 opacity-6">
+            <div class="container py-7 postion-relative z-index-2 position-relative">
+                <div class="row">
+                    <div class="col-md-7 mx-auto text-center">
+                        <h3 class="text-white mb-0">Do you love this awesome</h3>
+                        <h3 class="text-primary text-gradient mb-4">Design System for Bootstrap 5?</h3>
+                        <p class="text-white mb-5">
+                            Cause if you do, it can be yours for FREE.
+                        </p>
+                        <a target="_blank"
+                           href="https://appseed.us/product/soft-ui-design/django/"
+                           class="btn btn-primary btn-lg mb-3 mb-sm-0">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Section Content -->
+    <!-- -------   START PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
+
+    <div class="pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 ms-auto">
+                    <h4 class="mb-1">Thank you for your support!</h4>
+                    <p class="lead mb-0">We deliver the best web products</p>
+                </div>
+                <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-right mt-5">
+                    <a href="https://twitter.com/intent/tweet?text=Check%20Soft%20UI%20Design%20System%20made%20by%20%40CreativeTim%20%23webdesign%20%23designsystem%20%23bootstrap5&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-design-system"
+                       class="btn btn-info mb-0 me-2" target="_blank">
+                        <i class="fab fa-twitter me-1"></i> Tweet
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-design-system"
+                       class="btn btn-primary mb-0 me-2" target="_blank">
+                        <i class="fab fa-facebook-square me-1"></i> Share
+                    </a>
+                    <a href="https://www.pinterest.com/pin/create/button/?url=https://www.creative-tim.com/product/soft-ui-design-system"
+                       class="btn btn-dark mb-0 me-2" target="_blank">
+                        <i class="fab fa-pinterest me-1"></i> Pin it
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -------   END PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
+
+{% endblock content %}
+
