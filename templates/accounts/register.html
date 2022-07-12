@@ -16,7 +16,7 @@
                                 <h4 class="font-weight-bolder">Üye Ol</h4>
                                 <p class="mb-0">
                                     {% if msg %}
-                                        {{ msg | safe }}
+                                        {{ msg }}
                                     {% else %}
                                         Üyelik Bilgilerinizi Giriniz
                                     {% endif %}
@@ -59,7 +59,7 @@
 
                                     <div class="form-check form-switch text-start" style="margin-left: -50px;">
                                         {{ user_form.terms }}
-                                        <a href="{% url 'terms' %}">
+                                        <a href="{% url 'blog:terms' %}">
                                             <span>Kullanıcı Şartlarını kabul ediyorum.</span>
                                         </a>
 

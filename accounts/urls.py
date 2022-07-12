@@ -20,7 +20,6 @@ from . import views
 app_name = 'profile'
 
 urlpatterns = [
-    path('', generic.TemplateView.as_view(template_name='profile/home.html'), name='home'),
-    path('login/', views.Login.as_view(), name='login'),
-    path('register/', views.register, name='register'),
+    path('<slug:user>/', views.ProfileView.as_view(), name='home'),
+
 ]

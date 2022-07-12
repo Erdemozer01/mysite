@@ -18,11 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from posts import views
+from accounts import views as account
+
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('django.contrib.auth.urls')),
                   path('ckeditor/', include('ckeditor_uploader.urls')),
                   path('posts/kategoriler/', views.CategoryListView.as_view(), name='kategoriler'),
+                  path('login/', account.Login.as_view(), name='login'),
+                  path('register/', account.register, name='register'),
                   path('', include('blog.urls')),
                   path('posts/', include('posts.urls')),
                   path('profile/', include('accounts.urls')),

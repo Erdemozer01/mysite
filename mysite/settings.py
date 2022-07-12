@@ -77,8 +77,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-LOGOUT_REDIRECT_URL = reverse_lazy('home')
-LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = 'blog:home'
+LOGIN_REDIRECT_URL = 'blog:home'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

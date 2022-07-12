@@ -17,6 +17,8 @@ from django.urls import path, include
 from blog import views
 from django.views import generic
 
+app_name = 'blog'
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('terms/', views.terms, name='terms'),

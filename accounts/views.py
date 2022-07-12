@@ -6,6 +6,7 @@ from posts.models.posts import Posts
 from .forms import UserRegistrationForm
 from .models import Profile
 from django.contrib.auth.views import LoginView
+from django.views import generic
 
 
 class Login(LoginView):
@@ -40,4 +41,10 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request,
                   'accounts/register.html',
-                  {'user_form': user_form})
+                  {'user_form': user_form, 'msg':user_form.errors})
+
+
+class ProfileView(generic.ListView):
+    template_name = 'profile/home.html'
+    queryset = Profile.objects.all()
+    context_object_name = 'profile'

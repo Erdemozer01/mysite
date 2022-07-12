@@ -37,13 +37,13 @@
                                 </li>
                                 <li><a class="dropdown-item" href="/logout/">Çıkış</a></li>
                             {% elif request.user.is_anonymous %}
-                                <li><a class="dropdown-item" href="{% url 'profile:login' %}">Giriş Yap</a></li>
+                                <li><a class="dropdown-item" href="{% url 'login' %}">Giriş Yap</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="{% url "profile:register" %}">Üye Ol</a></li>
+                                <li><a class="dropdown-item" href="{% url "register" %}">Üye Ol</a></li>
                             {% else %}
-                                <li><a class="dropdown-item" href="{% url "profile:home" %}">{{ request.user|title }}</a></li>
+                                <li><a class="dropdown-item" href="{% url "profile:home" request.user %}">{{ request.user|title }}</a></li>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -140,14 +140,14 @@
                                                             Company
                                                         </div>
                                                     {% endfor %}
-                                                    <a href="{% url 'about' %}" class="dropdown-item border-radius-md">
+                                                    <a href="{% url 'blog:about' %}" class="dropdown-item border-radius-md">
                                                         <span class="ps-3">Hakkımızda</span>
                                                     </a>
-                                                    <a href="{% url 'contact' %}"
+                                                    <a href="{% url 'blog:contact' %}"
                                                        class="dropdown-item border-radius-md">
                                                         <span class="ps-3">İletişim</span>
                                                     </a>
-                                                    <a href="{% url 'terms' %}" class="dropdown-item border-radius-md">
+                                                    <a href="{% url 'blog:terms' %}" class="dropdown-item border-radius-md">
                                                         <span class="ps-3">Koşul ve Şartlar</span>
                                                     </a>
                                                     <hr class="vertical dark">
@@ -228,13 +228,13 @@
                                             </div>
                                             Company
                                         </div>
-                                        <a href="{% url 'about' %}" class="dropdown-item border-radius-md">
+                                        <a href="{% url 'blog:about' %}" class="dropdown-item border-radius-md">
                                             Hakkımızda
                                         </a>
-                                        <a href="{% url 'contact' %}" class="dropdown-item border-radius-md">
+                                        <a href="{% url 'blog:contact' %}" class="dropdown-item border-radius-md">
                                             iletişim
                                         </a>
-                                        <a href="{% url 'terms' %}" class="dropdown-item border-radius-md">
+                                        <a href="{% url 'blog:terms' %}" class="dropdown-item border-radius-md">
                                             Koşul ve Şartlar
                                         </a>
                                         <div class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center mt-3 px-0">
@@ -282,8 +282,6 @@
                                     </div>
                                 </div>
                             </li>
-
-
                             <li class="nav-item dropdown dropdown-hover mx-2">
                                 <a role="button"
                                    class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
@@ -587,13 +585,13 @@
                                         </li>
                                         <li><a class="dropdown-item" href="/logout/">Çıkış</a></li>
                                     {% elif request.user.is_anonymous %}
-                                        <li><a class="dropdown-item" href="{% url 'profile:login' %}">Giriş Yap</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'login' %}">Giriş Yap</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="{% url "profile:register" %}">Üye Ol</a></li>
+                                        <li><a class="dropdown-item" href="{% url "register" %}">Üye Ol</a></li>
                                     {% else %}
-                                        <li><a class="dropdown-item" href="{% url "profile:home" %}">{{ request.user|title }}</a></li>
+                                        <li><a class="dropdown-item" href="{% url "profile:home" request.user %}">{{ request.user|title }}</a></li>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
