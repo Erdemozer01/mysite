@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% if 'use_i18n'|bootstrap_setting %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+{% endif %}
+<html lang="{{ LANGUAGE_CODE|default:'en_us' }}">
+
+<head>
+
+    <title> {% block title %}{% endblock %} </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="author" content="erdem"/>
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="{% static "profile/css/nucleo-icons.css" %}" rel="stylesheet"/>
+    <link href="{% static "profile/css/nucleo-svg.css" %}" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script src="{% static "profile/css/42d5adcbca.js" %}" crossorigin="anonymous"></script>
+    <link href="https://appsrv1-147a1.kxcdn.com/soft-ui-dashboard-pro-v108/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{% static "profile/css/soft-ui-dashboard.css" %}?{% now "U" %}" rel="stylesheet"/>
+
+
+    <!-- Specific CSS goes HERE -->
+    {% block css %}{% endblock %}
+
+</head>
+<body class=" g-sidenav-show bg-gray-100 ">
+
+{% include 'profile/includes/sidebar.html' %}
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    {% include "profile/includes/navigation.html" %}
+
+    {% block content %}{% endblock %}
+
+    {% include "profile/includes/footer.html" %}
+
+    {% if request.user.is_superuser %}
+        {% include 'profile/includes/fixed.html' %}
+    {% endif %}
+
+</main>
+
+
+{% include 'profile/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>
