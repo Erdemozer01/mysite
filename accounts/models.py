@@ -24,6 +24,6 @@ class Profile(models.Model):
         return str(self.user)
 
     class Meta:
-        db_table = 'hesaplar'
+        db_table = 'accounts'
         verbose_name = 'Profil'
         verbose_name_plural = 'Profil'
