@@ -37,7 +37,7 @@
                                 </li>
                                 <li><a class="dropdown-item" href="/logout/">Çıkış</a></li>
                             {% elif request.user.is_anonymous %}
-                                <li><a class="dropdown-item" href="{% url 'admin:login' %}">Giriş Yap</a></li>
+                                <li><a class="dropdown-item" href="{% url 'profile:login' %}">Giriş Yap</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
