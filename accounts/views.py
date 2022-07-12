@@ -9,7 +9,7 @@ from django.contrib.auth.views import LoginView
 
 
 class Login(LoginView):
-    template_name = 'accounts/../templates/registration/login.html'
+    template_name = 'registration/login.html'
 
 
 def register(request):
