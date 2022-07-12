@@ -35,7 +35,7 @@ def register(request):
 
             login(request, new_user)
             return render(request,
-                          'profile/home.html',
+                          'blog/home.html',
                           {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
