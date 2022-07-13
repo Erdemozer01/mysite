@@ -1,9 +1,8 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from posts.models.posts import Posts
-from .forms import UserRegistrationForm
+from django.urls import reverse_lazy
+from .forms import UserRegistrationForm, ProfileForm
 from .models import Profile
 from django.contrib.auth.views import LoginView
 from django.views import generic
@@ -41,10 +40,24 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request,
                   'accounts/register.html',
-                  {'user_form': user_form, 'msg':user_form.errors})
+                  {'user_form': user_form, 'msg': user_form.errors})
 
 
 class ProfileView(generic.ListView):
     template_name = 'profile/home.html'
     queryset = Profile.objects.all()
     context_object_name = 'profile'
+
+
+class ProfileEdit(generic.UpdateView):
+    template_name = 'profile/pages/edit.html'
+    form_class = ProfileForm
+    success_url = reverse_lazy('profile:home')
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, "Profil Güncellendi")
+        return super(ProfileEdit, self).form_valid(form)
+
+    def get_object(self, queryset=None):
+        return self.request.user

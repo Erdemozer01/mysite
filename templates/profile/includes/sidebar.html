@@ -14,7 +14,10 @@
     <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#dashboardsExamples" class="nav-link " aria-expanded="false"
+                <a data-bs-toggle="collapse" href="#dashboardsExamples"
+                   class="nav-link "
+                   aria-expanded=" false "
+
                    aria-controls="dashboardsExamples" role="button">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
@@ -22,26 +25,38 @@
                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Profil</span>
+                    <span class="nav-link-text ms-1">Dashboards</span>
                 </a>
                 <div class="collapse  " id="dashboardsExamples">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/index.html">
-                                <span class="sidenav-mini-icon"> H </span>
-                                <span class="sidenav-normal"> Hakkımda </span>
+                                <span class="sidenav-mini-icon"> P </span>
+                                <span class="sidenav-normal"> Profil </span>
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a class="nav-link  " href="/dashboards-automotive.html">
-                                <span class="sidenav-mini-icon"> A </span>
-                                <span class="sidenav-normal"> Automotive </span>
+                            <a class="nav-link  " href="{% url "profile:edit" request.user %}">
+                                <span class="sidenav-mini-icon"> PD </span>
+                                <span class="sidenav-normal"> Profili Düzenle </span>
                             </a>
                         </li>
                         <li class="nav-item  ">
                             <a class="nav-link  " href="/dashboards-smart-home.html">
-                                <span class="sidenav-mini-icon"> S </span>
-                                <span class="sidenav-normal"> Smart Home </span>
+                                <span class="sidenav-mini-icon"> H </span>
+                                <span class="sidenav-normal"> Hakkımda </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="/dashboards-crm.html">
+                                <span class="sidenav-mini-icon"> G </span>
+                                <span class="sidenav-normal"> Gönderilerim </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="/dashboards-crm.html">
+                                <span class="sidenav-mini-icon"> M </span>
+                                <span class="sidenav-normal"> Mesajlarım </span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -66,12 +81,6 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/dashboards-crm.html">
-                                <span class="sidenav-mini-icon"> C </span>
-                                <span class="sidenav-normal"> CRM </span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </li>
@@ -81,8 +90,8 @@
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#pagesExamples"
 
-                   class="nav-link  active "
-                   aria-expanded=" true "
+                   class="nav-link "
+                   aria-expanded=" false "
 
                    aria-controls="pagesExamples" role="button">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -106,17 +115,17 @@
                     </div>
                     <span class="nav-link-text ms-1">Pages</span>
                 </a>
-                <div class="collapse  show " id="pagesExamples">
+                <div class="collapse " id="pagesExamples">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " data-bs-toggle="collapse" aria-expanded="false" href="#profileExample">
                                 <span class="sidenav-mini-icon"> P </span>
                                 <span class="sidenav-normal"> Profile <b class="caret"></b></span>
                             </a>
-                            <div class="collapse  show " id="profileExample">
+                            <div class="collapse " id="profileExample">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link  active " href="/profile-overview.html">
+                                        <a class="nav-link " href="/profile-overview.html">
                                             <span class="sidenav-mini-icon text-xs"> P </span>
                                             <span class="sidenav-normal"> Profile Overview </span>
                                         </a>
@@ -227,7 +236,7 @@
                                 <span class="sidenav-normal"> Pricing Page </span>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item  active ">
                             <a class="nav-link " href="/messages.html">
                                 <span class="sidenav-mini-icon"> M </span>
                                 <span class="sidenav-normal"> Messages </span>

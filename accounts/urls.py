@@ -21,5 +21,5 @@ app_name = 'profile'
 
 urlpatterns = [
     path('<slug:user>/', views.ProfileView.as_view(), name='home'),
-
+    path('<slug:user>/edit/', views.ProfileEdit.as_view(), name='edit'),
 ]
