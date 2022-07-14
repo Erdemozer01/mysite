@@ -1,63 +1,61 @@
-from django.contrib.auth import login
-from django.contrib import messages
 from django.shortcuts import render, redirect
+
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.urls import reverse_lazy
-from .forms import UserRegistrationForm, ProfileForm
+from .forms import UserRegistrationForm, ProfileUpdateForm, UserUpdateForm
 from .models import Profile
 from django.contrib.auth.views import LoginView
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class Login(LoginView):
     template_name = 'registration/login.html'
 
 
-def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            # Create a new user object but avoid saving it yet
-            new_user = user_form.save(commit=False)
-            # Set the chosen password
-            new_user.set_password(
-                user_form.cleaned_data['password'])
+class RegisterView(generic.CreateView):
+    template_name = 'accounts/register.html'
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy('register')
 
-            # Save the User object
-            new_user.save()
-            # Create the user profile
-            Profile.objects.create(
-                user=new_user,
-                first_name=user_form.cleaned_data['first_name'],
-                last_name=user_form.cleaned_data['last_name'],
-                email=user_form.cleaned_data['email'],
-            )
-
-            login(request, new_user)
-            return render(request,
-                          'blog/home.html',
-                          {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request,
-                  'accounts/register.html',
-                  {'user_form': user_form, 'msg': user_form.errors})
+    def form_valid(self, form):
+        messages.success(self.request, 'Başarılı Bir Şekilde Kayıt Oldunuz.')
+        form.save()
+        return super(RegisterView, self).form_valid(form)
 
 
 class ProfileView(generic.ListView):
+    model = Profile
     template_name = 'profile/home.html'
     queryset = Profile.objects.all()
     context_object_name = 'profile'
 
+    def get_queryset(self):
+        return self.model.user
 
-class ProfileEdit(generic.UpdateView):
-    template_name = 'profile/pages/edit.html'
-    form_class = ProfileForm
-    success_url = reverse_lazy('profile:home')
 
-    def form_valid(self, form):
-        form.save()
-        messages.success(self.request, "Profil Güncellendi")
-        return super(ProfileEdit, self).form_valid(form)
+class BasicProfileUpdate(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'profile/edit/basic.html'
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('profile:basic')
+    model = User
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+@login_required
+def profile_detail(request, pk, user):
+    profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+    user_form = UserUpdateForm(request.POST)
+    if request.method == "POST":
+        if profile_form.is_valid() and user_form.is_valid():
+            profile_form.save()
+            user_form.save()
+            return redirect('blog:home')
+        else:
+            form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+    return render(request, 'profile/edit/detail.html', {'profile_form': profile_form, 'user_form': user_form})

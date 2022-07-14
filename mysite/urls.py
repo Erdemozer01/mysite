@@ -26,7 +26,7 @@ urlpatterns = [
                   path('ckeditor/', include('ckeditor_uploader.urls')),
                   path('posts/kategoriler/', views.CategoryListView.as_view(), name='kategoriler'),
                   path('login/', account.Login.as_view(), name='login'),
-                  path('register/', account.register, name='register'),
+                  path('register/', account.RegisterView.as_view(), name='register'),
                   path('', include('blog.urls')),
                   path('posts/', include('posts.urls')),
                   path('profile/', include('accounts.urls')),

@@ -41,10 +41,15 @@ INSTALLED_APPS = [
     'posts.apps.PostsConfig',
     'accounts.apps.AccountsConfig',
     'django_cleanup',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'bootstrap5',
     'ckeditor',
     'ckeditor_uploader',
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,6 +84,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 LOGOUT_REDIRECT_URL = 'blog:home'
 LOGIN_REDIRECT_URL = 'blog:home'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

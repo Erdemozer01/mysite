@@ -43,7 +43,7 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{% url "register" %}">Üye Ol</a></li>
                             {% else %}
-                                <li><a class="dropdown-item" href="{% url "profile:home" request.user %}">{{ request.user|title }}</a></li>
+                                <li><a class="dropdown-item" href="{% url "profile:home" user.pk request.user %}">{{ request.user|title }}</a></li>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -591,7 +591,7 @@
                                         </li>
                                         <li><a class="dropdown-item" href="{% url "register" %}">Üye Ol</a></li>
                                     {% else %}
-                                        <li><a class="dropdown-item" href="{% url "profile:home" request.user %}">{{ request.user|title }}</a></li>
+                                        <li><a class="dropdown-item" href="{% url "profile:home" user.pk request.user %}">{{ request.user|title }}</a></li>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">

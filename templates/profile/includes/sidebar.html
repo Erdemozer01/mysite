@@ -4,7 +4,7 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="/">
+        <a class="navbar-brand m-0" href="{% url 'profile:home' user.pk user.username %}">
             <img src="https://appsrv1-147a1.kxcdn.com/soft-ui-dashboard-pro-v108/img/logo-ct-dark.png"
                  class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-1 font-weight-bold">{{ request.user|title }}</span>
@@ -13,77 +13,73 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#dashboardsExamples"
-                   class="nav-link "
-                   aria-expanded=" false "
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#dashboardsExamples"
+                       class="nav-link "
+                       aria-expanded=" false "
 
-                   aria-controls="dashboardsExamples" role="button">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
-                             class="bi bi-person" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                        </svg>
+                       aria-controls="dashboardsExamples" role="button">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                 class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                    <div class="collapse  " id="dashboardsExamples">
+                        <ul class="nav ms-4 ps-3">
+                            <li class="nav-item ">
+                                <a class="nav-link " href="{% url 'profile:basic' %}">
+                                    <span class="sidenav-mini-icon"> PD </span>
+                                    <span class="sidenav-normal"> Temel Profil Ayarları </span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a class="nav-link  " href="#">
+                                    <span class="sidenav-mini-icon"> SM </span>
+                                    <span class="sidenav-normal"> Sosyal Medya </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/dashboards-crm.html">
+                                    <span class="sidenav-mini-icon"> G </span>
+                                    <span class="sidenav-normal"> Gönderilerim </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/dashboards-crm.html">
+                                    <span class="sidenav-mini-icon"> M </span>
+                                    <span class="sidenav-normal"> Mesajlarım </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " data-bs-toggle="collapse" aria-expanded="false" href="#vrExamples">
+                                    <span class="sidenav-mini-icon"> V </span>
+                                    <span class="sidenav-normal"> Virtual Reality <b class="caret"></b></span>
+                                </a>
+                                <div class="collapse  " id="vrExamples">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item ">
+                                            <a class="nav-link " href="/dashboards-vr-default.html">
+                                                <span class="sidenav-mini-icon text-xs"> V </span>
+                                                <span class="sidenav-normal"> VR Default </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item ">
+                                            <a class="nav-link " href="/dashboards-vr-info.html">
+                                                <span class="sidenav-mini-icon text-xs"> V </span>
+                                                <span class="sidenav-normal"> VR Info </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <span class="nav-link-text ms-1">Dashboards</span>
-                </a>
-                <div class="collapse  " id="dashboardsExamples">
-                    <ul class="nav ms-4 ps-3">
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/index.html">
-                                <span class="sidenav-mini-icon"> P </span>
-                                <span class="sidenav-normal"> Profil </span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a class="nav-link  " href="{% url "profile:edit" request.user %}">
-                                <span class="sidenav-mini-icon"> PD </span>
-                                <span class="sidenav-normal"> Profili Düzenle </span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a class="nav-link  " href="/dashboards-smart-home.html">
-                                <span class="sidenav-mini-icon"> H </span>
-                                <span class="sidenav-normal"> Hakkımda </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/dashboards-crm.html">
-                                <span class="sidenav-mini-icon"> G </span>
-                                <span class="sidenav-normal"> Gönderilerim </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/dashboards-crm.html">
-                                <span class="sidenav-mini-icon"> M </span>
-                                <span class="sidenav-normal"> Mesajlarım </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " data-bs-toggle="collapse" aria-expanded="false" href="#vrExamples">
-                                <span class="sidenav-mini-icon"> V </span>
-                                <span class="sidenav-normal"> Virtual Reality <b class="caret"></b></span>
-                            </a>
-                            <div class="collapse  " id="vrExamples">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="/dashboards-vr-default.html">
-                                            <span class="sidenav-mini-icon text-xs"> V </span>
-                                            <span class="sidenav-normal"> VR Default </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ">
-                                        <a class="nav-link " href="/dashboards-vr-info.html">
-                                            <span class="sidenav-mini-icon text-xs"> V </span>
-                                            <span class="sidenav-normal"> VR Info </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+                </li>
+            {% endif %}
             <li class="nav-item mt-3">
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PAGES</h6>
             </li>

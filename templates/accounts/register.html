@@ -1,6 +1,6 @@
 {% extends "blog/index.html" %}
 
-{% load static %}
+{% load static bootstrap5 %}
 
 {% block title %}Üye Ol{% endblock %}
 
@@ -15,10 +15,14 @@
                             <div class="card-header pb-0 text-left">
                                 <h4 class="font-weight-bolder">Üye Ol</h4>
                                 <p class="mb-0">
-                                    {% if msg %}
-                                        {{ msg }}
-                                    {% else %}
-                                        Üyelik Bilgilerinizi Giriniz
+                                    {% if messages %}
+                                        <div class="alert alert-success">
+                                            {% for message in messages %}
+                                                {% if message.tags %}
+                                                    {{ message }} Giriş yapmak için <a href="{% url 'login' %}">Tıklayın.</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
                                     {% endif %}
                                 </p>
                             </div>
@@ -27,43 +31,8 @@
 
                                     {% csrf_token %}
 
-                                    <label for="">Kullanıcı Adı</label>
-                                    <p>{{ user_form.username }}</p>
-                                    <span>{{ user_form.username.help_text }}</span>
-                                    <span>{{ user_form.username.errors }}</span>
+                                    {% bootstrap_form form %}
 
-                                    <label for="">Ad</label>
-                                    <p>{{ user_form.first_name }}</p>
-                                    <span>{{ user_form.first_name.help_text }}</span>
-                                    <span>{{ user_form.first_name.errors }}</span>
-
-                                    <label for="">Soyad</label>
-                                    <p>{{ user_form.last_name }}</p>
-                                    <span>{{ user_form.last_name.help_text }}</span>
-                                    <span>{{ user_form.last_name.errors }}</span>
-
-                                    <label for="">Email</label>
-                                    <p>{{ user_form.email }}</p>
-                                    <span>{{ user_form.email.help_text }}</span>
-                                    <span class="text-error">{{ user_form.email.errors }}</span>
-
-                                    <label for="">Şifre</label>
-                                    <p>{{ user_form.password }}</p>
-                                    <span>{{ user_form.password.help_text }}</span>
-                                    <span class="text-error">{{ form.password.errors }}</span>
-
-                                    <label for="">Şifre Tekrarı</label>
-                                    <p>{{ user_form.password2 }}</p>
-                                    <span>{{ user_form.password2.help_text }}</span>
-                                    <span class="text-error">{{ user_form.password2.errors }}</span>
-
-                                    <div class="form-check form-switch text-start" style="margin-left: -50px;">
-                                        {{ user_form.terms }}
-                                        <a href="{% url 'blog:terms' %}">
-                                            <span>Kullanıcı Şartlarını kabul ediyorum.</span>
-                                        </a>
-
-                                    </div>
                                     <div class="text-center">
                                         <button type="submit" name="register"
                                                 class="btn btn-lg bg-gradient-dark btn-lg w-100 mt-4 mb-0">Üye ol
